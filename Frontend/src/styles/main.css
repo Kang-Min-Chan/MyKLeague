@@ -1,0 +1,242 @@
+.main {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+      rgba(0,0,0,0.4),
+      rgba(0,0,0,0.4)
+    ),
+    url("../images/mainback.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-inner {
+  width: 100%;
+  max-width: 1200px;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 왼쪽 */
+.main-left h1 {
+  font-size: 60px;
+  font-weight: 900;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.main-left p {
+  margin: 15px 0;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.main-btn {
+  padding: 15px 25px;
+  border-radius: 40px;
+  border: none;
+  background: white;
+  color: black;
+  font-weight: bold;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.title-box {
+  position: relative;
+  display: inline-block;
+  padding: 18px 0;
+  margin-bottom: 20px;
+}
+
+.title-box::before,
+.title-box::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 450px;    
+  height: 12px;    
+  background: white;
+  clip-path: polygon(
+    13px 0,
+    100% 0,
+    calc(100% - 13px) 100%,
+    0 100%
+  );
+}
+
+.title-box::before {
+  top: 0;
+}
+
+.title-box::after {
+  bottom: 0;
+}
+
+/* 중앙 로고 */
+.klogo {
+  width: 180px;
+}
+
+/* 오른쪽 선수 이미지 */
+.main-right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 80vw;    
+  max-width: 1300px; 
+  min-width: 320px;
+  z-index: 1;
+}
+
+.main-right img {
+  width: 100%;
+  height: auto;
+  opacity: 0.95;
+  animation: moveX 3s ease-in-out infinite alternate;
+}
+
+@keyframes moveX {
+  0% {
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(20px);
+  }
+}
+
+.p1 {
+  position: static; 
+}
+
+
+/* -------- Tablet (1024px 이하) -------- */
+@media (max-width: 1024px) {
+  .main {
+    padding: 0 40px;
+  }
+
+  .main-left h1 {
+    font-size: 48px;
+  }
+
+  .main-left p {
+    font-size: 16px;
+  }
+
+  .klogo {
+    width: 140px;
+  }
+
+  .main-right {
+    width: 380px;
+  }
+
+  .main-right img {
+    width: 150px;
+  }
+
+  .p2 {
+    left: 90px;
+  }
+
+  .p3 {
+    left: 190px;
+  }
+}
+
+/* -------- Mobile (768px 이하) -------- */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .main-left h1 {
+    font-size: 36px;
+  }
+
+  .main-left p {
+    font-size: 15px;
+  }
+
+  .main-btn {
+    padding: 12px 20px;
+  }
+
+  .klogo {
+    width: 130px;
+  }
+
+  .main-right {
+    width: 320px;
+    height: 200px;
+  }
+
+  .main-right img {
+    width: 130px;
+  }
+
+  .p1 {
+    left: 20px;
+  }
+
+  .p2 {
+    left: 100px;
+  }
+
+  .p3 {
+    left: 180px;
+  }
+}
+
+/* -------- Small Mobile (480px 이하) -------- */
+@media (max-width: 480px) {
+  .main-left h1 {
+    font-size: 28px;
+  }
+
+  .main-left p {
+    font-size: 14px;
+  }
+
+  .klogo {
+    width: 110px;
+  }
+
+  /* 선수 2명만 보이게 (공간 정리) */
+  .p3 {
+    display: none;
+  }
+
+  .main-right {
+    width: 260px;
+  }
+
+  .main-right img {
+    width: 120px;
+  }
+
+  .p1 {
+    left: 20px;
+  }
+
+  .p2 {
+    left: 120px;
+  }
+}

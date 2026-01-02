@@ -1,0 +1,117 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #003f9e, #0072ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  position: relative;
+  inset: 0;
+}
+.login-box {
+  width: 380px;
+  padding: 35px;
+  border-radius: 15px;
+  background: white;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.login-title {
+  font-size: 28px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.login-sub {
+  color: gray;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+.login-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  box-sizing: border-box; /* 패딩으로 인한 너비 늘어남 방지 */
+}
+.login-input:focus {
+  outline: none;
+  border: 1px solid #0072ff;
+}
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #003f9e;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+.login-btn:hover {
+  background: #002b73;
+}
+.login-bottom {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.login-bottom a {
+  color: #003f9e;
+  font-weight: bold;
+  text-decoration: none;
+}
+/* 아이디 중복확인 버튼 */
+.id-check-btn {
+  background-color: #003f9e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  height: 45px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.id-check-btn:hover {
+  background-color: #002b73;
+}
+.id-check-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+/* 닉네임 중복확인 버튼 */
+.nick-check-btn {
+  background-color: #003f9e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  height: 45px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.nick-check-btn:hover {
+  background-color: #002b73;
+}
+.nick-check-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+/* 입력 그룹 레이아웃 */
+.input-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.input-group .login-input {
+  flex: 1;
+  margin-bottom: 0;
+}
