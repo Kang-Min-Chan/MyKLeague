@@ -55,6 +55,14 @@
   text-decoration: none;
 }
 
+.nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
 /* 햄버거 버튼 */
 .hamburger {
   display: none;

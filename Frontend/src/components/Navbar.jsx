@@ -19,10 +19,10 @@ export default function Navbar() {
             </div>
 
             <ul className="nav-links">
-            <li><a href="#">홈</a></li>
-            <li><a href="#">매칭</a></li>
-            <li><a href="#">팀 소개</a></li>
-            <li><a href="#">문의</a></li>
+            <li><button onClick={() => nav("/")} className="nav-btn">홈</button></li>
+            <li><button onClick={() => nav("/recommend")} className="nav-btn">매칭</button></li>
+            <li><button onClick={() => nav("/team")} className="nav-btn">팀 소개</button></li>
+            <li><button onClick={() => nav("/contact")} className="nav-btn">문의</button></li>
             </ul>
         </div>
     </nav>
