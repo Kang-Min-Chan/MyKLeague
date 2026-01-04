@@ -105,6 +105,27 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+/* 이메일 중복확인 버튼 */
+.email-check-btn {
+  background-color: #003f9e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  height: 45px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.email-check-btn:hover {
+  background-color: #002b73;
+}
+.email-check-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 /* 입력 그룹 레이아웃 */
 .input-group {
   display: flex;

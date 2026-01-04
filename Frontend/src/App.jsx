@@ -3,7 +3,7 @@ import Main from "./components/Main";
 import Login from "./components/Login";
 import { Routes, Route } from "react-router-dom";
 import Join from "./components/Join";
-import Recommend from "./components/Recommend";
+import Type from "./components/Type";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
-        <Route path="/recommend" element={<Recommend />} />
+        <Route path="/Type" element={<Type />} />
       </Routes>
     </>
   );
