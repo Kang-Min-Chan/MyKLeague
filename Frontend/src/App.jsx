@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import { Routes, Route } from "react-router-dom";
 import Join from "./components/Join";
 import Type from "./components/Type";
+import TypeResult from "./components/TypeResult";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
         <Route path="/Type" element={<Type />} />
+        <Route path="/TypeResult" element={<TypeResult />} />
       </Routes>
     </>
   );
