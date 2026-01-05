@@ -9,26 +9,36 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-  const res = await fetch(`${API_BASE}/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ user_id: userId, password })
-  });
+    try {
+      const res = await fetch(`${API_BASE}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userId,
+          password: password
+        })
+      });
 
-  const data = await res.json();
-  console.log("로그인 응답:", data); 
+      const data = await res.json();
+      console.log("로그인 응답:", data);
 
-  if (!res.ok) {
-    alert(data.message || "로그인 실패");
-    return;
-  }
+      if (!res.ok) {
+        alert(data.message || "로그인 실패");
+        return;
+      }
 
-  
-  localStorage.setItem("accessToken", data.accessToken);
-  console.log("저장된 토큰:", localStorage.getItem("accessToken"));
+      // 🔥 JWT 저장 (이름 통일)
+      localStorage.setItem("accessToken", data.accessToken);
+      console.log("저장된 토큰:", localStorage.getItem("accessToken"));
 
-  nav("/Type");
-};
+      // 🔥 로그인 성공 → 설문 페이지 이동
+      nav("/Type");
+
+    } catch (err) {
+      console.error("로그인 요청 오류:", err);
+      alert("서버 오류가 발생했습니다.");
+    }
+  };
 
   return (
     <div className="login">
@@ -43,6 +53,7 @@ function Login() {
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
         />
+
         <input
           type="password"
           placeholder="비밀번호 입력"
@@ -51,14 +62,16 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button className="login-btn" onClick={handleLogin}>로그인</button>
+        <button className="login-btn" onClick={handleLogin}>
+          로그인
+        </button>
 
         <div className="login-bottom">
           <span>계정이 없으신가요?</span>
-          <button 
-          className="join-btn" 
-          onClick={() => nav("/join")}
-          style={{
+          <button
+            className="join-btn"
+            onClick={() => nav("/join")}
+            style={{
               background: "none",
               border: "none",
               color: "#0072ff",
@@ -68,7 +81,8 @@ function Login() {
               padding: 0,
               marginLeft: "5px"
             }}
-            >회원가입
+          >
+            회원가입
           </button>
         </div>
       </div>

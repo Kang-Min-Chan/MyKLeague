@@ -10,7 +10,6 @@ function verifyToken(req, res, next) {
   const token = auth.split(" ")[1];
 
   try {
-    // 🔥 여기 중요
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded; // { user_id }
     next();
