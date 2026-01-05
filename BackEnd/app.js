@@ -22,6 +22,11 @@ app.use("/type", typeRoutes);
 const typeresultRoutes = require("./routes/typeresult");
 app.use("/typeresult", typeresultRoutes);
 
+// AI API
+const aiRouter = require("./routes/ai");
+app.use("/ai", aiRouter);
+
+
 app.listen(3000, () => {
   console.log("🔥 Server running at http://localhost:3000");
 });

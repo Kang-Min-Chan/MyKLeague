@@ -1,0 +1,21 @@
+{
+  "preference": {
+    "fast": true,
+    "press": false,
+    "possession": true
+  },
+  "teams": [
+    {
+      "name": "울산",
+      "pass": 0.7,
+      "press": 0.3,
+      "counter": 0.2
+    },
+    {
+      "name": "광주",
+      "pass": 0.4,
+      "press": 0.6,
+      "counter": 0.5
+    }
+  ]
+}
