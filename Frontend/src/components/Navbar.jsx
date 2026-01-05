@@ -34,7 +34,7 @@ export default function Navbar() {
               style={{width:"25px", height:"25px", textAlign:"center"}} />캘린더</button></li>
             <li><button onClick={() => nav("/contact")} className="nav-btn">
               <img src={myicon} alt="myicon"
-              style={{width:"30px", height:"30px", textAlign:"center"}} />MY팀</button></li>
+              style={{width:"25px", height:"25px", textAlign:"center"}} />MY팀</button></li>
             </ul>
         </div>
     </nav>
