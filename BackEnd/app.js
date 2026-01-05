@@ -16,6 +16,9 @@ app.use("/type", require("./routes/type"));
 // 팀 조회
 app.use("/select", require("./routes/select"));
 
+// 커뮤니티
+app.use("/community", require("./routes/community"));
+
 app.listen(3000, () => {
   console.log("🔥 Server running at http://localhost:3000");
 });
