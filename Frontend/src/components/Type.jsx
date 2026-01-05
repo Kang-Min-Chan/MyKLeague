@@ -38,15 +38,35 @@ export default function Type() {
       return;
     }
 
+    // 🔹 순서 보장된 answers 배열
     const orderedAnswers = questions.map(q => answers[q.id]);
 
-    const res = await fetch(`${API_BASE}/TypeResult`, {
+    // 🔥 추가 1: JWT 토큰 가져오기
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      nav("/login");
+      return;
+    }
+
+    // 🔥 추가 2: 올바른 백엔드 API로 전송
+    const res = await fetch(`${API_BASE}/type/survey`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}` // 🔥 핵심
+      },
       body: JSON.stringify({ answers: orderedAnswers })
     });
 
     const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "설문 처리 실패");
+      return;
+    }
+
+    // 🔹 결과 페이지로 이동
     nav("/TypeResult", { state: data });
   };
 
@@ -54,8 +74,7 @@ export default function Type() {
 
   return (
     <div className="type">
-      
-      {/* 🔹 상단 고정 진행률 */}
+      {/* 상단 진행률 */}
       <div className="progress-fixed">
         <div className="progress-inner">
           <div className="progress-info">
@@ -63,19 +82,18 @@ export default function Type() {
             <span>{answeredCount}/{questions.length}</span>
           </div>
           <div className="progress-bar">
-            <div
-              className="progress-fill"
-              style={{ width: `${progress}%` }}
-            />
+            <div className="progress-fill" style={{ width: `${progress}%` }} />
           </div>
         </div>
       </div>
 
-      {/* 🔹 실제 질문 영역 */}
+      {/* 질문 영역 */}
       <div className="type-box">
         <h1 className="type-title">MY K-LEAGUE</h1>
-        <p style={{textAlign:'right'}}>1부터 5까지 선호도를 선택해주세요.<br />
-        1 - 매우 부정적 | 5 - 매우 긍정적</p>
+        <p style={{ textAlign: "right" }}>
+          1부터 5까지 선호도를 선택해주세요.<br />
+          1 - 매우 부정적 | 5 - 매우 긍정적
+        </p>
 
         <form onSubmit={handleSubmit} className="question-list">
           {questions.map(q => (
@@ -88,9 +106,7 @@ export default function Type() {
                     key={v}
                     type="button"
                     onClick={() => handleSelect(q.id, v)}
-                    className={`answer-btn ${
-                      answers[q.id] === v ? "active" : ""
-                    }`}
+                    className={`answer-btn ${answers[q.id] === v ? "active" : ""}`}
                   >
                     {v}
                   </button>
@@ -102,9 +118,7 @@ export default function Type() {
           <div className="submit-area">
             <button
               disabled={answeredCount !== questions.length}
-              className={`submit-btn ${
-                answeredCount !== questions.length ? "disabled" : ""
-              }`}
+              className={`submit-btn ${answeredCount !== questions.length ? "disabled" : ""}`}
             >
               입력완료
             </button>

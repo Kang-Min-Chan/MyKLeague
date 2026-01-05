@@ -12,20 +12,16 @@ router.post("/", async (req, res) => {
     [user_id]
   );
 
-  if (!user) {
-    return res.status(401).json({ message: "로그인 실패" });
-  }
+  if (!user) return res.status(401).json({ message: "로그인 실패" });
 
   const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) {
-    return res.status(401).json({ message: "로그인 실패" });
-  }
+  if (!isMatch) return res.status(401).json({ message: "로그인 실패" });
 
-const token = jwt.sign(
-  { user_id: user.user_id },
-  process.env.JWT_SECRET,
-  { expiresIn: "1d" }
-);
+  const token = jwt.sign(
+    { user_id: user.user_id },
+    process.env.JWT_SECRET,
+    { expiresIn: "1d" }
+  );
 
   res.json({ accessToken: token });
 });

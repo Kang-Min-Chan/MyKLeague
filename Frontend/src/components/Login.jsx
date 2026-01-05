@@ -9,22 +9,26 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    const res = await fetch(`${API_BASE}/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id: userId, password })
-    });
+  const res = await fetch(`${API_BASE}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user_id: userId, password })
+  });
 
-    const data = await res.json();
-    if (!res.ok) {
-      alert(data.message || "로그인 실패");
-      return;
-    }
+  const data = await res.json();
+  console.log("로그인 응답:", data); 
 
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user));
-    nav("/Type");
-  };
+  if (!res.ok) {
+    alert(data.message || "로그인 실패");
+    return;
+  }
+
+  
+  localStorage.setItem("accessToken", data.accessToken);
+  console.log("저장된 토큰:", localStorage.getItem("accessToken"));
+
+  nav("/Type");
+};
 
   return (
     <div className="login">

@@ -20,10 +20,7 @@ router.get("/team/:name", verifyToken, async (req, res) => {
     [name]
   );
 
-  res.json({
-    team: teams[0],
-    players
-  });
+  res.json({ team: teams[0], players });
 });
 
 module.exports = router;

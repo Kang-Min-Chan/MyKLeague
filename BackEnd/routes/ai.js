@@ -1,3 +1,4 @@
+// 설문 점수 기반 팀 추천 로직 (라우터 아님)
 function recommendTeamBySurvey(answers) {
   const sum = answers.reduce((a, b) => a + b, 0);
 
@@ -15,4 +16,5 @@ function recommendTeamBySurvey(answers) {
   return "광주 FC";
 }
 
+// 🔥 여기 중요: 함수 자체를 export
 module.exports = recommendTeamBySurvey;
