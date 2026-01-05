@@ -6,26 +6,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 회원가입 API
-const joinRoutes = require("./routes/join");
-app.use("/join", joinRoutes);
+// 회원
+app.use("/join", require("./routes/join"));
+app.use("/login", require("./routes/login"));
 
-// 로그인 API
-const loginRoutes = require("./routes/login");
-app.use("/login", loginRoutes);
+// 설문 / 추천
+app.use("/type", require("./routes/type"));
 
-// 취향선택 API
-const typeRoutes = require("./routes/type");
-app.use("/type", typeRoutes);
-
-// 팀 결과 API
-const typeresultRoutes = require("./routes/typeresult");
-app.use("/typeresult", typeresultRoutes);
-
-// AI API
-const aiRouter = require("./routes/ai");
-app.use("/ai", aiRouter);
-
+// 팀 조회
+app.use("/select", require("./routes/select"));
 
 app.listen(3000, () => {
   console.log("🔥 Server running at http://localhost:3000");

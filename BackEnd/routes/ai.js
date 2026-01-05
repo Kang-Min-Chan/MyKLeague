@@ -1,39 +1,20 @@
-const express = require("express");
-const router = express.Router();
-const { execFile } = require("child_process");
-const path = require("path");
-const fs = require("fs");
+// 설문 점수 기반 팀 추천 로직 (라우터 아님)
+function recommendTeamBySurvey(answers) {
+  const sum = answers.reduce((a, b) => a + b, 0);
 
-router.post("/match", (req, res) => {
-  console.log("👉 /ai/match called");
+  if (sum >= 70) return "울산 HD";
+  if (sum >= 65) return "전북 현대";
+  if (sum >= 60) return "포항 스틸러스";
+  if (sum >= 55) return "FC 서울";
+  if (sum >= 50) return "인천 유나이티드";
+  if (sum >= 45) return "대구 FC";
+  if (sum >= 40) return "제주 유나이티드";
+  if (sum >= 35) return "대전 하나";
+  if (sum >= 30) return "수원 FC";
+  if (sum >= 25) return "강원 FC";
+  if (sum >= 20) return "김천 상무";
+  return "광주 FC";
+}
 
-  const payload = req.body;
-  const inputPath = path.join(__dirname, "../ai/input.json");
-  const scriptPath = path.join(__dirname, "../ai/ai_match.py");
-
-  try {
-    fs.writeFileSync(inputPath, JSON.stringify(payload, null, 2));
-  } catch (e) {
-    console.error("❌ File write error:", e);
-  }
-
-  execFile("python", [scriptPath], { timeout: 20000 }, (err, stdout, stderr) => {
-    if (err) {
-      console.error("❌ Python exec error:", err);
-      console.error("STDERR:", stderr);
-      return res.status(500).json({ error: "Python exec error", stderr });
-    }
-
-    console.log("🧠 Python output:", stdout);
-
-    try {
-      const result = JSON.parse(stdout);
-      res.json(result);
-    } catch (e) {
-      console.error("❌ JSON parse error:", stdout);
-      res.status(500).json({ error: "Parse Error", raw: stdout });
-    }
-  });
-});
-
-module.exports = router;
+// 🔥 여기 중요: 함수 자체를 export
+module.exports = recommendTeamBySurvey;
