@@ -1,0 +1,164 @@
+/* 전체 배경 */
+.type {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #0a2a72, #1547b3);
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------------- 상단 고정 진행률 ---------------- */
+.progress-fixed {
+  position: fixed;
+  top: 70px;              /* 네비바 높이 있으면 맞춰서 조정 */
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.progress-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 14px 20px;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #2563eb;
+  border-radius: 20px;
+  transition: width 0.3s ease;
+}
+
+/* ---------------- 질문 영역 ---------------- */
+.type-box {
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  border-radius: 28px;
+  padding: 120px 40px 40px;  /* 🔥 상단 진행률 공간 확보 */
+  margin-top: 140px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+/* 제목 */
+.type-title {
+  text-align: center;
+  font-size: 38px;
+  font-weight: 900;
+  margin-bottom: 30px;
+}
+
+/* 질문 리스트 */
+.question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.question-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 15px;
+}
+
+/* 숫자 버튼 */
+.answer-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.answer-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.answer-btn:hover {
+  background: #eff6ff;
+}
+
+/* 선택됨 */
+.answer-btn.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+  transform: scale(1.1);
+}
+
+/* 제출 버튼 영역 */
+.submit-area {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.submit-btn {
+  padding: 12px 28px;
+  border-radius: 14px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: #1d4ed8;
+}
+
+.submit-btn.disabled {
+  background: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* ---------------- 반응형 ---------------- */
+@media (max-width: 768px) {
+  .progress-inner {
+    margin: 0 16px;
+  }
+
+  .type-box {
+    padding: 120px 20px 30px;
+    margin-top: 120px;
+  }
+
+  .type-title {
+    font-size: 30px;
+  }
+
+  .question-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

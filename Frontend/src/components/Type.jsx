@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../api";
+import "../styles/Type.css";
 
 const questions = [
   { id: 1, text: "패스 위주의 경기 좋아하나요?" },
@@ -44,43 +45,51 @@ export default function Type() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ answers: orderedAnswers })
     });
-    
-    const data = await res.json();
 
+    const data = await res.json();
     nav("/TypeResult", { state: data });
   };
 
   const progress = (answeredCount / questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-blue-800 flex items-center justify-center px-6">
-      <div className="max-w-4xl w-full bg-white rounded-3xl p-8 shadow-xl">
-        <h1 className="text-center text-4xl font-black italic mb-4">K MY K-LEAGUE</h1>
-
-        <div className="mb-4">
-          <div className="flex justify-between text-sm text-gray-500 mb-1">
+    <div className="type">
+      
+      {/* 🔹 상단 고정 진행률 */}
+      <div className="progress-fixed">
+        <div className="progress-inner">
+          <div className="progress-info">
             <span>진행률</span>
             <span>{answeredCount}/{questions.length}</span>
           </div>
-          <div className="w-full h-2 bg-gray-200 rounded-full">
-            <div className="h-2 bg-blue-600 rounded-full" style={{ width: `${progress}%` }} />
+          <div className="progress-bar">
+            <div
+              className="progress-fill"
+              style={{ width: `${progress}%` }}
+            />
           </div>
         </div>
+      </div>
 
-        <form onSubmit={handleSubmit} className="space-y-3">
+      {/* 🔹 실제 질문 영역 */}
+      <div className="type-box">
+        <h1 className="type-title">MY K-LEAGUE</h1>
+        <p style={{textAlign:'right'}}>1부터 5까지 선호도를 선택해주세요.<br />
+        1 - 매우 부정적 | 5 - 매우 긍정적</p>
+
+        <form onSubmit={handleSubmit} className="question-list">
           {questions.map(q => (
-            <div key={q.id} className="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
+            <div key={q.id} className="question-item">
               <span>{q.id}. {q.text}</span>
-              <div className="flex gap-2">
+
+              <div className="answer-buttons">
                 {[1,2,3,4,5].map(v => (
                   <button
                     key={v}
                     type="button"
                     onClick={() => handleSelect(q.id, v)}
-                    className={`w-9 h-9 rounded-lg border ${
-                      answers[q.id] === v
-                        ? "bg-blue-600 text-white border-blue-600 scale-110"
-                        : "border-gray-300 hover:bg-blue-50"
+                    className={`answer-btn ${
+                      answers[q.id] === v ? "active" : ""
                     }`}
                   >
                     {v}
@@ -90,13 +99,11 @@ export default function Type() {
             </div>
           ))}
 
-          <div className="flex justify-end pt-4">
+          <div className="submit-area">
             <button
               disabled={answeredCount !== questions.length}
-              className={`px-8 py-3 rounded-lg ${
-                answeredCount !== questions.length
-                  ? "bg-gray-300 text-gray-500"
-                  : "bg-blue-600 text-white hover:bg-blue-700"
+              className={`submit-btn ${
+                answeredCount !== questions.length ? "disabled" : ""
               }`}
             >
               입력완료
