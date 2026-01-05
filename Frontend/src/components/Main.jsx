@@ -16,7 +16,7 @@ export default function Main() {
                   <p>K리그 입문자를 위한 취향에 맞는 나만의 팀 찾기</p>
                   <button 
                     className="main-btn"
-                    onClick={() => nav("/login")}
+                    onClick={() => nav("/type")}
                   >
                     시작하기 →
                   </button>

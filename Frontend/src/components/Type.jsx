@@ -90,10 +90,8 @@ export default function Type() {
       {/* 질문 영역 */}
       <div className="type-box">
         <h1 className="type-title">MY K-LEAGUE</h1>
-        <p style={{ textAlign: "right" }}>
-          1부터 5까지 선호도를 선택해주세요.<br />
-          1 - 매우 부정적 | 5 - 매우 긍정적
-        </p>
+        <p style={{textAlign:'right'}}>팀 매칭을 위한 초기 설문을 진행합니다.<br />
+        <button className="answer-btn">1</button> - 매우 부정적 | <button className="answer-btn">5</button> - 매우 긍정적</p>
 
         <form onSubmit={handleSubmit} className="question-list">
           {questions.map(q => (
