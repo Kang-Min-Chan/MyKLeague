@@ -1,12 +1,42 @@
 import { useState } from "react";
 import "../styles/MyInfo.css";
+import { API_BASE } from "../api";
 
 export default function MyInfo() {
   const [activeTab, setActiveTab] = useState("profile");
 
+  const [form, setForm] = useState({
+    user_id: "",
+    nickname: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const checkDuplicate = async (type) => {
+    const value = form[type];
+    if (!value) {
+      alert("값을 입력해주세요.");
+      return;
+    }
+
+    try {
+      const res = await fetch(
+        `${API_BASE}/join/check?type=${type}&value=${encodeURIComponent(value)}`
+      );
+      const data = await res.json();
+      alert(data.message);
+    } catch (err) {
+      alert("중복 확인 중 오류 발생");
+      console.error(err);
+    }
+  };
+
   return (
     <div className="myinfo">
-      {/* 상단 팀 영역 */}
+      {/* 상단 */}
       <div className="myinfo-header">
         <div className="team-info">
           <span className="team-icon">🔥</span>
@@ -17,49 +47,72 @@ export default function MyInfo() {
         </div>
       </div>
 
-      {/* 탭 메뉴 */}
+      {/* 탭 */}
       <div className="myinfo-tabs">
-        <button
-          className={activeTab === "team" ? "tab active" : "tab"}
-          onClick={() => setActiveTab("team")}
-        >
+        <button className={activeTab === "team" ? "tab active" : "tab"} onClick={() => setActiveTab("team")}>
           팀 정보
         </button>
-        <button
-          className={activeTab === "store" ? "tab active" : "tab"}
-          onClick={() => setActiveTab("store")}
-        >
+        <button className={activeTab === "store" ? "tab active" : "tab"} onClick={() => setActiveTab("store")}>
           팀 스토어
         </button>
-        <button
-          className={activeTab === "profile" ? "tab active" : "tab"}
-          onClick={() => setActiveTab("profile")}
-        >
+        <button className={activeTab === "profile" ? "tab active" : "tab"} onClick={() => setActiveTab("profile")}>
           프로필
         </button>
       </div>
 
-      {/* 콘텐츠 */}
+      {/* 프로필 */}
       <div className="myinfo-content">
         {activeTab === "profile" && (
           <div className="profile-box">
             <h3>프로필 재설정</h3>
 
+            {/* 아이디 */}
             <div className="profile-item">
               <label>아이디</label>
-              <input type="text" placeholder="아이디 변경" />
+              <div className="input-row">
+                <input
+                  type="text"
+                  name="user_id"
+                  placeholder="아이디 변경"
+                  value={form.user_id}
+                  onChange={handleChange}
+                />
+                <button className="check-btn" onClick={() => checkDuplicate("user_id")}>
+                  중복확인
+                </button>
+              </div>
             </div>
 
+            {/* 닉네임 */}
             <div className="profile-item">
               <label>닉네임</label>
-              <input type="text" placeholder="닉네임 변경" />
+              <div className="input-row">
+                <input
+                  type="text"
+                  name="nickname"
+                  placeholder="닉네임 변경"
+                  value={form.nickname}
+                  onChange={handleChange}
+                />
+                <button className="check-btn" onClick={() => checkDuplicate("nickname")}>
+                  중복확인
+                </button>
+              </div>
             </div>
 
+            {/* 비밀번호 */}
             <div className="profile-item">
               <label>비밀번호</label>
-              <input type="password" placeholder="비밀번호 변경" />
+              <input
+                type="password"
+                name="password"
+                placeholder="비밀번호 변경"
+                value={form.password}
+                onChange={handleChange}
+              />
             </div>
 
+            {/* 버튼 */}
             <div className="profile-actions">
               <button className="save-btn">정보 수정</button>
               <button className="team-btn">팀 다시 선택</button>

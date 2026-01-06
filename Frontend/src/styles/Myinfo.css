@@ -4,7 +4,7 @@
   padding-bottom: 40px;
 }
 
-/* 상단 영역 */
+/* 상단 */
 .myinfo-header {
   background: linear-gradient(90deg, #1d5cff, #003cff);
   padding: 24px 60px;
@@ -79,38 +79,62 @@
   border: 1px solid #ddd;
 }
 
-/* 버튼 */
+/* input + 중복확인 */
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.input-row input {
+  flex: 1;
+}
+
+.check-btn {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: none;
+  background: #1f6bff;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.check-btn:hover {
+  opacity: 0.9;
+}
+
+/* 버튼 영역 */
 .profile-actions {
   display: flex;
+  flex-direction: column;
   gap: 12px;
   margin-top: 30px;
 }
 
 .save-btn {
-  flex: 1;
-  background: #1d5cff;
+  background: #1f6bff;
   color: white;
   border: none;
-  padding: 14px;
-  border-radius: 12px;
+  padding: 12px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
 .team-btn {
-  flex: 1;
-  background: #f1f1f1;
+  background: #e9ecef;
   border: none;
-  padding: 14px;
-  border-radius: 12px;
+  padding: 12px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
 .delete-btn {
-  flex: 1;
   background: #ff4d4f;
   color: white;
   border: none;
-  padding: 14px;
-  border-radius: 12px;
+  padding: 12px;
+  border-radius: 10px;
   cursor: pointer;
 }
