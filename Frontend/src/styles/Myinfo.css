@@ -1,13 +1,27 @@
-.myinfo {
-  background: #f7f8fa;
+/* 전체 배경 (Login처럼) */
+.myinfo-page {
   min-height: 100vh;
-  padding-bottom: 40px;
+  background: linear-gradient(180deg, #0a5cff, #003cff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+/* 중앙 카드 */
+.myinfo {
+  width: 100%;
+  max-width: 900px;
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 }
 
 /* 상단 */
 .myinfo-header {
   background: linear-gradient(90deg, #1d5cff, #003cff);
-  padding: 24px 60px;
+  padding: 24px 32px;
   color: white;
 }
 
@@ -24,8 +38,8 @@
 /* 탭 */
 .myinfo-tabs {
   display: flex;
-  gap: 16px;
-  padding: 20px 60px;
+  gap: 12px;
+  padding: 20px 32px;
 }
 
 .tab {
@@ -34,7 +48,7 @@
   border-radius: 14px;
   background: #f1f1f1;
   border: none;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
 }
 
@@ -46,14 +60,14 @@
 
 /* 콘텐츠 */
 .myinfo-content {
-  padding: 0 60px;
+  padding: 0 32px 32px;
 }
 
+/* 프로필 박스 */
 .profile-box {
-  background: white;
+  background: #ffffff;
   border-radius: 18px;
   padding: 30px;
-  margin-top: 20px;
 }
 
 .profile-box h3 {
@@ -118,8 +132,8 @@
   color: white;
   border: none;
   padding: 12px;
-  border-radius: 10px;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .team-btn {
