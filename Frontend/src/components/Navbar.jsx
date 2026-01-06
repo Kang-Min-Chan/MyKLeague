@@ -66,7 +66,7 @@ export default function Navbar() {
             </button>
           </li>
           <li>
-            <button onClick={() => nav("/contact")} className="nav-btn">
+            <button onClick={() => nav("/Myinfo")} className="nav-btn">
               <img src={myicon} alt="myicon" style={{width:"25px", height:"25px", textAlign:"center"}} />MY팀
             </button>
           </li>
@@ -76,7 +76,7 @@ export default function Navbar() {
         <div className="nav-user">
           {user ? (
             <button className="user-btn" onClick={handleLogout}>
-              {user.username} 로그아웃
+              {user.user_id}님 (로그아웃)
             </button>
           ) : (
             <button className="user-btn" onClick={() => nav("/login")}>

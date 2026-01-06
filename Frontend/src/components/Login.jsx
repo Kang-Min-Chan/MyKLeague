@@ -32,7 +32,8 @@ function Login() {
       console.log("저장된 토큰:", localStorage.getItem("accessToken"));
 
       // 🔥 로그인 성공 → 설문 페이지 이동
-      nav("/Type");
+      nav("/");
+      window.location.reload()
 
     } catch (err) {
       console.error("로그인 요청 오류:", err);

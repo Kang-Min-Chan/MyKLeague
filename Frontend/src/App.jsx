@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Join from "./components/Join";
 import Type from "./components/Type";
 import TypeResult from "./components/TypeResult";
+import MyInfo from "./components/Myinfo";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/join" element={<Join />} />
         <Route path="/Type" element={<Type />} />
         <Route path="/TypeResult" element={<TypeResult />} />
+        <Route path="/Myinfo" element={<MyInfo />} />
       </Routes>
     </>
   );
